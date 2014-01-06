@@ -46,7 +46,7 @@
 				</section>
 
         <section data-markdown>
-          <script type="test/template">
+          <script type="text/template">
             ## The Plan
             * Environment setup
             * Introduction to tools we will be using <!-- .element: class="fragment" data-fragment-index="1" -->
@@ -57,7 +57,7 @@
         </section>
 
         <section data-markdown>
-          <script type="test/template">
+          <script type="text/template">
             ## Environment Setup
             * .NET / C++ Runtime
             * ruby
@@ -67,7 +67,7 @@
         </section>
 
         <section data-markdown>
-          <script type="test/template">
+          <script type="text/template">
             ## .NET / C++ Runtime
             * .NET used to access UI Automation library
             * C++ Runtime for ruby to call into it via `ffi`
@@ -76,9 +76,9 @@
 
         <section>
           <section data-markdown>
-            <script type="test/template">
+            <script type="text/template">
               ## ruby
-              ![PATH options](./images/ruby_install.png)
+              ![PATH options](./images/ruby_install.png) <!-- .element: width="500px" -->
 
               ```
               > ruby -v
@@ -88,7 +88,7 @@
           </section>
 
           <section data-markdown>
-            <script type="test/template">
+            <script type="text/template">
               ##  gems
               ```
               > gem install bundler
@@ -99,7 +99,7 @@
         </section>
         
         <section data-markdown>
-          <script type="test/template">
+          <script type="text/template">
             ## DevKit
             * Extract to `c:\DevKit`
             * Run the following commands to install it in your environment:
@@ -113,7 +113,7 @@
         </section>
 
         <section data-markdown>
-          <script type="test/template">
+          <script type="text/template">
             ##  msysgit
             * Choose defaults until it asks about adjusting your `PATH` environment:
 
@@ -122,7 +122,7 @@
         </section>
 
         <section data-markdown>
-          <script type="test/template">
+          <script type="text/template">
             ##  rubymine
             Choose all of the default options. Later we will need to tell RubyMine to default `cucumber` to use Bundler,
             but we can set that up later.
@@ -131,7 +131,8 @@
 
         <section>
           <section data-markdown>
-            <script type="test/template">
+            <script type="text/template">
+              <!-- .slide: data-transition="none" -->
               ## ruby - classes
               ```ruby
               class SomeClass
@@ -143,7 +144,7 @@
                   'Hello, I am class method #1'
                 end
 
-                class < self # another syntax for class methods
+                class << self # another syntax for class methods
                   def class_level_two
                     'Hello, I am a class method #2'
                   end
@@ -154,7 +155,21 @@
           </section>
 
           <section data-markdown>
-            <script type="test/template">
+            <script type="text/template">
+              <!-- .slide: data-transition="none" -->
+              ```ruby
+              s = SomeClass.new
+              s.add 1, 3 # => 4 (@last_result = 4 as well)
+
+              s.some_class_level_one # => NoMethodError: undefined method `class_level_one' for #<SomeClass:0x007fab7c2b16d0>
+              SomeClass.class_level_one # => "Hello, I am class method #1"
+              SomeClass.class_level_two # => "Hello, I am class method #1"
+              ```
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
               ## ruby - modules
               ```
               module Adding
@@ -176,12 +191,12 @@
           </section>
 
           <section data-markdown>
-            <script type="test/template">
+            <script type="text/template">
               ## ruby - dynamic methods
               ```ruby
               module DynamicModule
                 def create(name)
-                  define_method(name) do |*args|
+                  define_method("dynamic_#{name}") do |*args|
                     "#{__method__} called with #{args}"
                   end
                 end
@@ -194,8 +209,8 @@
               end
 
               s = SomeClass.new
-              s.first # => "first called with []"
-              s.second 'hello', 1 # => "second called with [\"hello\", 1]"
+              s.dynamic_first # => "dynamic_first called with []"
+              s.dynamic_second 'hello', 1 # => "dynamic_second called with [\"hello\", 1]"
               ```
             </script>
           </section>
