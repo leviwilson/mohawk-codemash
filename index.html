@@ -51,11 +51,76 @@
             * Environment setup
             * Introduction to tools we will be using <!-- .element: class="fragment" data-fragment-index="1" -->
             * Build our first scenario together <!-- .element: class="fragment" data-fragment-index="2" -->
-            * item <!-- .element: class="fragment" data-fragment-index="3" -->
-            * item <!-- .element: class="fragment" data-fragment-index="4" -->
-            * item <!-- .element: class="fragment" data-fragment-index="5" -->
-            * item <!-- .element: class="fragment" data-fragment-index="5" -->
-            * item <!-- .element: class="fragment" data-fragment-index="6" -->
+            * Exercises <!-- .element: class="fragment" data-fragment-index="3" -->
+            * Discussion / Q & A <!-- .element: class="fragment" data-fragment-index="4" -->
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="test/template">
+            ## Environment Setup
+            * .NET / C++ Runtime
+            * ruby
+            * msysgit for Windows
+            * RubyMine
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="test/template">
+            ## .NET / C++ Runtime
+            * .NET used to access UI Automation library
+            * C++ Runtime for ruby to call into it via `ffi`
+          </script>
+        </section>
+
+        <section>
+          <section data-markdown>
+            <script type="test/template">
+              ## ruby
+              ![PATH options](./images/ruby_install.png)
+
+              ```
+              > ruby -v
+              > ruby 1.9.3p392 (2013-02-22) [i386-mingw32]
+              ```
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="test/template">
+              ##  gems
+              ```
+              > gem install bundler
+              > gem install testgen
+              ```
+            </script>
+          </section>
+        </section>
+        
+        <section data-markdown>
+          <script type="test/template">
+            ## DevKit
+            * Extract to `c:\DevKit`
+            * Run the following commands to install it in your environment:
+
+            ```
+            > cd \DevKit
+            > ruby dk.rb init
+            > ruby dk.rb install
+            ```
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="test/template">
+            ##  msysgit
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="test/template">
+            ##  rubymine
           </script>
         </section>
 
