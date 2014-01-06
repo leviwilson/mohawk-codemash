@@ -215,6 +215,40 @@
             </script>
           </section>
         </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            <!-- .slide: data-transition="none" -->
+            ##  First Scenario - Getting Started
+            ```
+            > cd %userprofile%
+            > git clone http://github.com/leviwilson/mohawk-codemash
+              Cloning into 'mohawk-codemash'
+            > cd mohawk-codemash
+            ```
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ##  testgen
+            `testgen` will create the `cucumber` project structure for us.
+
+            ```
+            > testgen project . --with-mohawk --with-lib
+               exist
+               create  cucumber.yml
+               create  Gemfile
+               create  Rakefile
+               create  features
+               create  features/support
+               create  features/step_definitions
+               create  features/support/env.rb
+               create  lib
+               create  lib/screens
+            ```
+          </script>
+        </section>
 			</div>
 
 		</div>
