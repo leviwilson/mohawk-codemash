@@ -49,10 +49,10 @@
           <script type="text/template">
             ## The Plan
             * Environment setup
-            * Introduction to tools we will be using <!-- .element: class="fragment" data-fragment-index="1" -->
-            * Build our first scenario together <!-- .element: class="fragment" data-fragment-index="2" -->
-            * Exercises <!-- .element: class="fragment" data-fragment-index="3" -->
-            * Discussion / Q & A <!-- .element: class="fragment" data-fragment-index="4" -->
+            * Ruby Basics
+            * Build our first scenario together
+            * Exercises
+            * Discussion / Q & A
           </script>
         </section>
 
@@ -216,10 +216,84 @@
           </section>
         </section>
 
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              <!-- .slide: data-transition="zoom" -->
+              ## Page Object Pattern
+
+              ### Before
+
+              ```ruby
+              login_window = RAutomation::Window.new(title: /Login/, adapter: :ms_uia)
+              user_name = login_window.text_field(id: 'txtUserName')
+              password = login_window.text_field(id: 'txtPassword')
+              ok = login_window.button(value: 'OK')
+
+              user_name.set 'leviwilson'
+              password.set 'pa$$w0rd'
+              ok.click
+
+              main_window = RAutomation::Window.new(title: /Main Screen/)
+              RAutomation::WaitHelper::wait_until { main_window.present? }
+              ```
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              <!-- .slide: data-transition="zoom" -->
+              ## Page Object Pattern
+
+              ### After
+
+              ```ruby
+              on(LoginScreen) do |screen|
+                screen.user_name = 'leviwilson'
+                screen.password = 'pa$$w0rd'
+                screen.ok
+              end
+              on(MainScreen).wait_until_present
+              ```
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ## Defining a Screen
+
+              ```ruby
+              class LoginScreen
+                include Mohawk # mixin the Mohawk module
+                window(title: /Login/) # how to find the containing window
+
+                # define the controls within the window
+                text(:user_name, id: 'txtUserName')
+                text(:password, id: 'txtPassword')
+                button(:ok, value: 'OK')
+
+                # helper methods
+                def login(user_name, password)
+                  self.user_name = user_name
+                  self.password = password
+                  ok
+                end
+              end
+              ```
+            </script>
+          </section>
+        </section>
+
         <section data-markdown>
           <script type="text/template">
-            <!-- .slide: data-transition="none" -->
-            ##  First Scenario - Getting Started
+            ## Let's Get Started!
+            ![Ultimate Warrior](./images/warrior.gif)
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ##  Clone the Repository
             ```
             > cd %userprofile%
             > git clone http://github.com/leviwilson/mohawk-codemash
@@ -233,6 +307,7 @@
           <script type="text/template">
             ##  testgen
             `testgen` will create the `cucumber` project structure for us.
+
 
             ```
             > testgen project . --with-mohawk --with-lib
