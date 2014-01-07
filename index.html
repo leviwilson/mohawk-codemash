@@ -132,6 +132,31 @@
         <section>
           <section data-markdown>
             <script type="text/template">
+              ## Ruby
+              ### A quick introduction
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ## ruby - hashes, symbols
+              ```ruby
+              h = {
+                some_key: true,
+                :the_old_way => nil,
+                1 => 'keys can',
+                'be' => :anything
+              }
+              # => {:some_key=>true, :the_old_way=>nil, 1=>"keys can", "be"=>:anything}
+
+              h[:some_key] # => true
+              h[1] # => 'keys can'
+              ```
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
               <!-- .slide: data-transition="none" -->
               ## ruby - classes
               ```ruby
@@ -163,7 +188,7 @@
 
               s.some_class_level_one # => NoMethodError: undefined method `class_level_one' for #<SomeClass:0x007fab7c2b16d0>
               SomeClass.class_level_one # => "Hello, I am class method #1"
-              SomeClass.class_level_two # => "Hello, I am class method #1"
+              SomeClass.class_level_two # => "Hello, I am class method #2"
               ```
             </script>
           </section>
