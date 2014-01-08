@@ -10,12 +10,3 @@ def capture_screenshot(name)
   now = Time.now.to_s.gsub(/\W+/, '.')
   Win32::Screenshot::Take.of(:desktop).write("screenshots/#{now}.#{name}.png")
 end
-
-Before do
-  Mohawk.start
-end
-
-After do |scenario|
-  capture_screenshot(scenario.name.gsub(/\W+/,'_')) if scenario.failed?
-  Mohawk.stop
-end
