@@ -55,6 +55,7 @@ PLATFORMS
 
 DEPENDENCIES
   cucumber
+  data_magic
   ffi (= 1.9.0)
   mohawk (~> 0.1)
   rake

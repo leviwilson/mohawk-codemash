@@ -1,0 +1,5 @@
+new_entry:
+  title:  ~words(2).capitalize
+  user_name:  ~mask('A') + last_name
+  url:  ~'http://codemash.org/' + mask('AA###')
+  notes:  ~words(3)
