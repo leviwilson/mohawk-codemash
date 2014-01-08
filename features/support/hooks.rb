@@ -2,13 +2,17 @@ Before('@default_database') do
   KeePass.last_database = :default
 end
 
+Before('@populated_database') do
+  KeePass.last_database = :populated
+end
+
 Before do
   Mohawk.start
 end
 
-Before('@default_database') do
+Before('@default_database, @populated_database') do
   on(OpenDatabase).verify 'pa$$w0rd'
-  expect(on(MainScreen).title).to include 'default'
+  expect(on(MainScreen)).to be_present
 end
 
 After do |scenario|
