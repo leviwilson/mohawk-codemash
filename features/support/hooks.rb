@@ -7,6 +7,8 @@ Before('@populated_database') do
 end
 
 Before do
+  KeePassSettings.write kee_check_for_update: false,
+                        kee_check_for_update_configured: true
   Mohawk.start
 end
 
