@@ -1,8 +1,6 @@
 class KeePass
   def self.last_database=(database)
-    File.open('./app/KeePass.ini', 'w') do |f|
-      f.write "[KeePass]\nKeeLastDb=#{database}.kdb"
-    end
+    KeePassSettings.add kee_last_db: "#{database}.kdb"
   end
 
   def self.clean_locks
